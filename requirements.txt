@@ -1,0 +1,11 @@
+networkx>=3.0
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+seaborn>=0.12
+scipy>=1.10
+
+# GPU 환경 추가 설치 (CUDA 12.x 기준)
+# cudf-cu12
+# cugraph-cu12
+# nx-cugraph-cu12
