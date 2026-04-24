@@ -57,7 +57,7 @@ road-network-graph-analytics/
 | 단계 | 분석 과정 &emsp;&emsp; | 상세 내용 및 시각화 |
 | :---: | :--- | :--- |
 | **Section 2** | **합성 도로망 생성** | 35×35 격자 기반 도로망 구성. 수평·수직·대각선 연결에 확률 기반 무작위 추가 연결 포함. GML 원본처럼 src_id에 `#` 접두사 부착하여 실제 전처리 흐름 재현 |
-| **Section 3** | **데이터 전처리** | `str.lstrip('#')` ID 정규화 → 속도 제한 테이블 병합 → `length_s` 파생 변수 생성 → 정수 graph_id 매핑 |
+| **Section 3** | **데이터 <br>전처리** | `str.lstrip('#')` ID 정규화 → 속도 제한 테이블 병합 → `length_s` 파생 변수 생성 → 정수 graph_id 매핑 |
 | **Section 4** | **그래프 기본 분석** | 노드 1,225개 / 엣지 2,622개 / 평균 차수 4.28 확인. 차수 분포·도로 형태·속도 제한 시각화<br><br><img src="plots/01_data_overview.png" width="100%"> |
 | **Section 5–6** | **SSSP 분석** | 최고 차수 노드(Node 383, 차수 7)를 출발지로 거리(m) · 시간(s) 각각 Dijkstra 실행. SSSP 결과를 OSGB36 좌표에 색상으로 매핑하여 공간 히트맵 생성<br><br><img src="plots/02_sssp_spatial.png" width="100%"><br><br><img src="plots/03_sssp_distribution.png" width="100%"> |
 | **Section 7** | **중심성 5종 분석** | Degree / Betweenness / Katz / PageRank / Eigenvector 각 알고리즘 실행. Top-20 노드 비교 + 지표 간 상관 행렬 도출<br><br><img src="plots/04_centrality_top20.png" width="100%"><br><br><img src="plots/05_centrality_spatial.png" width="100%"> |
