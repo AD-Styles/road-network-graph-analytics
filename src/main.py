@@ -1,16 +1,16 @@
 # ============================================================
-# NVIDIA DLI "Fundamentals of Accelerated Data Science" 학습 기반
+# NVIDIA DLI "Fundamentals of Accelerated 단일 Data Science" 학습 기반
 # GPU 가속 그래프 분석 파이프라인 재현 및 확장 구현
 #
 # 분석 흐름
-#   Section 1  : 환경 설정
-#   Section 2  : 합성 도로망 데이터 생성
-#   Section 3  : 데이터 전처리 (ID 정규화 · 속도 가중치)
-#   Section 4  : 그래프 기본 분석 (차수 분포 · 연결성)
-#   Section 5  : 거리 기반 SSSP 분석
-#   Section 6  : 이동 시간 기반 SSSP 분석
-#   Section 7  : 중심성 지표 5종 비교
-#   Section 8  : 종합 시각화 저장
+#   Section 1  : 환경 설정
+#   Section 2  : 합성 도로망 데이터 생성
+#   Section 3  : 데이터 전처리 (ID 정규화 · 속도 가중치)
+#   Section 4  : 그래프 기본 분석 (차수 분포 · 연결성)
+#   Section 5  : 거리 기반 SSSP 분석
+#   Section 6  : 이동 시간 기반 SSSP 분석
+#   Section 7  : 중심성 지표 5종 비교
+#   Section 8  : 종합 시각화 저장
 # ============================================================
 
 import os, time, warnings
@@ -19,23 +19,47 @@ warnings.filterwarnings('ignore')
 import numpy as np
 import pandas as pd
 import networkx as nx
-import matplotlib
-matplotlib.use('Agg')
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.gridspec as gridspec
 import seaborn as sns
+import platform
+
+# ==========================================================
+# [강제 해결] Matplotlib 폰트 캐시 삭제 (기존 실패 상태 강제 초기화)
+# ==========================================================
+cache_dir = mpl.get_cachedir()
+for file in os.listdir(cache_dir):
+    if "font" in file:
+        try:
+            os.remove(os.path.join(cache_dir, file))
+        except Exception:
+            pass
+
+# ==========================================================
+# 테마 및 폰트 설정 (순서 절대 유지)
+# ==========================================================
+# 1. Seaborn 테마 적용 (글꼴 초기화 발생)
+sns.set_style('darkgrid')
+
+# 2. 운영체제별 폰트 강제 재적용
+if platform.system() == 'Windows':
+    plt.rc('font', family='Malgun Gothic')
+elif platform.system() == 'Darwin':
+    plt.rc('font', family='AppleGothic')
+else:
+    plt.rc('font', family='NanumGothic')
+
+plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['figure.dpi'] = 120
 
 PLOTS_DIR = 'plots'
 os.makedirs(PLOTS_DIR, exist_ok=True)
-
-plt.rcParams['figure.dpi'] = 120
-plt.rcParams['axes.unicode_minus'] = False
-plt.rcParams['font.family'] = 'DejaVu Sans'
-sns.set_style('darkgrid')
+# ==========================================================
 
 # 영국 도로 유형별 속도 제한 (mph)
-# 출처: https://www.rac.co.uk/drive/advice/legal/speed-limits/
 SPEED_LIMITS = {
     'Motorway':                     70,
     'A Road':                       60,
@@ -546,11 +570,11 @@ def plot_backend_methods_summary(cent: dict):
         ax.text(0.5, 0.94, m['title'], ha='center', va='center',
                 fontsize=11, fontweight='bold', color='white', transform=ax.transAxes)
 
-        # 코드 블록
+        # 코드 블록 (글로벌 한글 폰트를 강제 적용)
         ax.add_patch(plt.Rectangle((0.02, 0.52), 0.96, 0.34,
                                    color='#1e1e1e', transform=ax.transAxes, zorder=2))
         ax.text(0.05, 0.85, m['code'], ha='left', va='top',
-                fontsize=8.5, color='#d4d4d4', fontfamily='monospace',
+                fontsize=8.5, color='#d4d4d4', fontfamily=plt.rcParams['font.family'],
                 transform=ax.transAxes, zorder=3)
 
         # 장점
