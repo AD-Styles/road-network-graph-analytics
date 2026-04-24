@@ -25,16 +25,17 @@ NVIDIA DLI(Deep Learning Institute) 강좌 "Fundamentals of Accelerated Data Sci
 ```text
 road-network-graph-analytics/
 ├── plots/
-│   ├── 01_data_overview.png          # 도로망 데이터 기초 통계 대시보드
-│   ├── 02_sssp_spatial.png           # SSSP 결과 공간 히트맵 (거리 / 이동시간)
-│   ├── 03_sssp_distribution.png      # SSSP 거리·시간 분포 비교
-│   ├── 04_centrality_top20.png       # 중심성 5종 Top-20 노드 + 상관 행렬
-│   ├── 05_centrality_spatial.png     # 중심성 공간 분포 + Degree vs PageRank
-│   ├── 06_backend_methods.png        # nx-cugraph 3가지 백엔드 방식 정리
-│   └── 07_summary_card.png           # 핵심 수치 요약 대시보드
-├── main.py                           # 전체 분석 파이프라인 통합 실행 스크립트
-├── README.md                         # 프로젝트 기술 보고서
-└── requirements.txt                  # 의존성 패키지 목록
+│   ├── 01_data_overview.png           # 도로망 데이터 기초 통계 대시보드
+│   ├── 02_sssp_spatial.png            # SSSP 결과 공간 히트맵 (거리 / 이동시간)
+│   ├── 03_sssp_distribution.png       # SSSP 거리·시간 분포 비교
+│   ├── 04_centrality_top20.png        # 중심성 5종 Top-20 노드 + 상관 행렬
+│   ├── 05_centrality_spatial.png      # 중심성 공간 분포 + Degree vs PageRank
+│   ├── 06_backend_methods.png         # nx-cugraph 3가지 백엔드 방식 정리
+│   └── 07_summary_card.png            # 핵심 수치 요약 대시보드
+├── plots/
+│   ├──main.py                         # 전체 분석 파이프라인 통합 실행 스크립트
+├── README.md                          # 프로젝트 기술 보고서
+└── requirements.txt                   # 의존성 패키지 목록
 ```
 
 ---
