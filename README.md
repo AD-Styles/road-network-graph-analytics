@@ -30,10 +30,12 @@ road-network-graph-analytics/
 │   ├── 05_centrality_spatial.png      # 중심성 공간 분포 + Degree vs PageRank
 │   ├── 06_backend_methods.png         # nx-cugraph 3가지 백엔드 방식 정리
 │   └── 07_summary_card.png            # 핵심 수치 요약 대시보드
-├── plots/
+├── src/
 │   ├──main.py                         # 전체 분석 파이프라인 통합 실행 스크립트
-├── README.md                          # 프로젝트 기술 보고서
-└── requirements.txt                   # 의존성 패키지 목록
+├─ .gitignore                      
+├─ LICENSE                         
+├─ README.md                           # 프로젝트 개요 및 가이드 문서
+└─ requirements.txt                    # 핵심 라이브러리 목록
 ```
 
 ---
