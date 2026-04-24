@@ -65,19 +65,6 @@ road-network-graph-analytics/
 
 ---
 
-## 🛠️ 핵심 구현 기술 (Technical Implementation)
-
-| 구현 항목 | 세부 내용 | 학습 포인트 |
-| :--- | :--- | :--- |
-| **합성 데이터 설계** | 영국 도로 유형(Motorway ~ Secondary Access Road) 8종과 실제 속도 제한 규정을 그대로 반영한 격자 기반 도로망 생성. 대각선·역대각선 연결 확률을 달리하여 비정형 밀도 재현 | 도메인 지식을 코드로 옮기는 데이터 설계 역량 |
-| **전처리 파이프라인** | ID 정규화 → 속도 테이블 JOIN → `length_s = length / limit_m_s` 파생 변수 → 정수 graph_id 매핑까지 단일 함수로 통합. cuGraph의 정수 인덱스 요구사항에 맞춘 구조 | 그래프 라이브러리 입력 스펙에 맞는 전처리 설계 |
-| **이중 가중치 SSSP** | 거리(m) · 이동 시간(s) 두 가지 가중치로 각각 Dijkstra 실행하여 결과 비교. 물리 거리 ≠ 이동 시간임을 시각적으로 증명 | 그래프 가중치의 의미론적 해석 능력 |
-| **중심성 5종 비교** | Degree, Betweenness(k=300 샘플링), Katz, PageRank, Eigenvector를 순차 실행 후 상관 행렬 분석. 알고리즘별 Top 노드가 다름을 정량적으로 확인 | 네트워크 중요도 지표의 다차원 이해 |
-| **nx-cugraph 3방식** | 환경변수 / 키워드 인수 / 타입 디스패치 방식의 코드 패턴·장단점을 레퍼런스 시각화로 정리. 실무 적용 시 기준점으로 활용 가능 | GPU 가속 추상화 레이어 활용법 체계화 |
-| **공간 시각화** | OSGB36(영국 국가 좌표계) Easting/Northing 기반 산점도에 SSSP 거리·중심성 값을 컬러맵으로 매핑. 지리 정보 없이도 공간 패턴 해석 가능 | 그래프 분석 결과의 지리 공간적 시각화 |
-
----
-
 ## 📊 분석 결과 요약 (Results Summary)
 
 ### 그래프 기본 구조
@@ -108,18 +95,6 @@ road-network-graph-analytics/
 | **Eigenvector** | 이웃 중요도 합산 | Node 1096 | Katz와 유사 패턴이나 지역적 군집에 더 민감 |
 
 > **인사이트**: Betweenness Centrality Top 노드가 Degree Top 노드와 다르게 나타남. 직접 연결이 많은 허브와 실제 정보 흐름의 병목(교두보) 역할을 하는 노드는 별개라는 점이 도로망 설계에 중요한 시사점을 제공함.
-
----
-
-## ⚡ GPU 가속 원리: cuDF / cuGraph vs CPU 비교
-
-| 구분 | CPU (pandas + NetworkX) | GPU (cuDF + cuGraph) |
-| :--- | :--- | :--- |
-| **데이터 적재** | pandas.read_csv | cudf.read_csv (GPU 메모리 직접 적재) |
-| **그래프 구성** | nx.from_pandas_edgelist | G.from_cudf_edgelist |
-| **SSSP** | nx.single_source_dijkstra | cg.sssp (CUDA 병렬 Bellman-Ford/Dijkstra) |
-| **중심성** | nx.betweenness_centrality | nx.betweenness_centrality(backend='cugraph') |
-| **대규모 성능** | 수백만 노드에서 수 시간 | 동일 규모에서 수 초 (약 100x~1000x 가속) |
 
 ---
 
