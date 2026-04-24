@@ -13,7 +13,8 @@
 ## 📌 프로젝트 요약 (Project Overview)
 
 이번 프로젝트는 NVIDIA DLI(Deep Learning Institute) 강좌 "Fundamentals of Accelerated Data Science"에서 학습한 GPU 가속 그래프 분석 내용을 포트폴리오 형태로 재구성한 프로젝트입니다. 영국 전체 도로망(Great Britain Road Network)을 본뜬 합성 데이터를 직접 설계하여, 데이터 수집부터 그래프 구축, 최단 경로 탐색, 중심성 분석까지 전체 파이프라인을 하나의 실행 스크립트로 완성했습니다.
-이 프로젝트는 cuDF/cuGraph 없이도 동일한 분석 흐름을 pandas + NetworkX로 재현할 수 있도록 설계했으며, 시각화 자료 7종을 자동으로 저장하여 분석 결과를 직관적으로 확인할 수 있습니다.
+
+해당 프로젝트는 cuDF/cuGraph 없이도 동일한 분석 흐름을 pandas + NetworkX로 재현할 수 있도록 설계했으며, 시각화 자료 7종을 자동으로 저장하여 분석 결과를 직관적으로 확인할 수 있습니다.
 
 ---
 
