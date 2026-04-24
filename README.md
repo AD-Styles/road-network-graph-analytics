@@ -54,7 +54,7 @@ road-network-graph-analytics/
 
 ## 🔍 분석 흐름 및 시각화 결과 (Pipeline & Results)  
 
-| 단계 | 분석 과정 emsp;&emsp;&emsp; | 상세 내용 및 시각화 |
+| 단계 | 분석 과정 &emsp;&emsp;&emsp; | 상세 내용 및 시각화 |
 | :---: | :--- | :--- |
 | **Section 2** | **합성 도로망 생성** | 35×35 격자 기반 도로망 구성. 수평·수직·대각선 연결에 확률 기반 무작위 추가 연결 포함. GML 원본처럼 src_id에 `#` 접두사 부착하여 실제 전처리 흐름 재현 |
 | **Section 3** | **데이터 전처리** | `str.lstrip('#')` ID 정규화 → 속도 제한 테이블 병합 → `length_s` 파생 변수 생성 → 정수 graph_id 매핑 |
