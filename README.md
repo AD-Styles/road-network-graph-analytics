@@ -12,10 +12,7 @@
 
 ## 📌 프로젝트 요약 (Project Overview)
 
-NVIDIA DLI(Deep Learning Institute) 강좌 "Fundamentals of Accelerated Data Science"에서 학습한 GPU 가속 그래프 분석 내용을 포트폴리오 형태로 재구성한 프로젝트입니다. 영국 전체 도로망(Great Britain Road Network)을 본뜬 합성 데이터를 직접 설계하여, 데이터 수집부터 그래프 구축, 최단 경로 탐색, 중심성 분석까지 전체 파이프라인을 하나의 실행 스크립트로 완성했습니다.
-
-강좌에서는 실제 GB 도로 데이터(GML 포맷)를 NVIDIA GPU 위에서 cuDF와 cuGraph로 분석했는데, 이 과정에서 가장 인상 깊었던 부분이 두 가지였습니다. 첫 번째는 수백만 개 노드·엣지로 구성된 거대한 도로망 그래프에서 SSSP(단일 출발지 최단 경로)를 CPU 대비 몇 배나 빠르게 풀어내는 장면이었고, 두 번째는 NetworkX라는 기존에 익숙한 라이브러리에 `backend='cugraph'`라는 인수 하나만 추가해도 GPU 가속이 적용된다는 점이었습니다. 알고리즘 자체가 아닌 '연산 기반(backend)'이라는 추상화 수준에서 가속을 제어한다는 발상이 굉장히 실용적이라고 느꼈습니다.
-
+이번 프로젝트는 NVIDIA DLI(Deep Learning Institute) 강좌 "Fundamentals of Accelerated Data Science"에서 학습한 GPU 가속 그래프 분석 내용을 포트폴리오 형태로 재구성한 프로젝트입니다. 영국 전체 도로망(Great Britain Road Network)을 본뜬 합성 데이터를 직접 설계하여, 데이터 수집부터 그래프 구축, 최단 경로 탐색, 중심성 분석까지 전체 파이프라인을 하나의 실행 스크립트로 완성했습니다.
 이 프로젝트는 cuDF/cuGraph 없이도 동일한 분석 흐름을 pandas + NetworkX로 재현할 수 있도록 설계했으며, 시각화 자료 7종을 자동으로 저장하여 분석 결과를 직관적으로 확인할 수 있습니다.
 
 ---
@@ -140,6 +137,11 @@ p = nx.pagerank(nxcg_G, max_iter=10)    # 이후 GPU 직접 실행
 ---
 
 ## 💡 회고록 (Retrospective)
+
+
+강좌에서는 실제 GB 도로 데이터(GML 포맷)를 NVIDIA GPU 위에서 cuDF와 cuGraph로 분석했는데, 이 과정에서 가장 인상 깊었던 부분이 두 가지였습니다. 첫 번째는 수백만 개 노드·엣지로 구성된 거대한 도로망 그래프에서 SSSP(단일 출발지 최단 경로)를 CPU 대비 몇 배나 빠르게 풀어내는 장면이었고, 두 번째는 NetworkX라는 기존에 익숙한 라이브러리에 `backend='cugraph'`라는 인수 하나만 추가해도 GPU 가속이 적용된다는 점이었습니다. 알고리즘 자체가 아닌 '연산 기반(backend)'이라는 추상화 수준에서 가속을 제어한다는 발상이 굉장히 실용적이라고 느꼈습니다.
+
+
 
 솔직히 처음 RAPIDS라는 이름을 들었을 때는 'GPU로 데이터 분석을 빠르게 한다'는 게 막연하게 느껴졌습니다. 딥러닝 모델 학습에 GPU를 쓰는 건 자연스럽게 받아들였는데, 데이터 전처리나 그래프 탐색 같은 알고리즘도 GPU로 가속한다는 발상이 처음엔 잘 와닿지 않았습니다.
 
