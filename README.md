@@ -1,5 +1,5 @@
 # 🛣️ Road Network Graph Analytics with GPU Acceleration
-### NVIDIA DLI · Fundamentals of Accelerated Data Science 학습 기반 그래프 분석 파이프라인
+### NVIDIA DLI · Fundamentals of Accelerated Data Science 학습 기반 그래프 분석 파이프라
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![NetworkX](https://img.shields.io/badge/NetworkX-3.x-orange.svg)
